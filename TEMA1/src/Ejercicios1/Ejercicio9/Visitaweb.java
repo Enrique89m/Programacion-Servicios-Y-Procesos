@@ -27,6 +27,12 @@ public class Visitaweb {
         }
 
         try{
+            InputStream es = proceso.getErrorStream();
+            int d;
+            while ((d = es.read()) != -1)
+                System.out.print((char) d);
+            es.close();
+
             InputStream is = proceso.getInputStream();
             int c;
             while ((c = is.read()) != -1)

@@ -1,13 +1,23 @@
 package Ejercicios1.Ejercicio8;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Scanner;
 
 public class LanzadorProcesoPalindromo {
     static Scanner sc = new Scanner(System.in);
+
+    private static void escrituraFicheros(File archivo, String cadena) throws IOException {
+        if (archivo.exists()){
+            BufferedWriter bf = new BufferedWriter(new FileWriter(archivo, true));
+            bf.write(", " + cadena);
+            bf.close();
+        }else{
+            BufferedWriter bf = new BufferedWriter(new FileWriter(archivo));
+            bf.write(cadena);
+            bf.close();
+        }
+    }
+
     public static void main(String[] args) {
         String dir = System.getProperty("user.dir");
         File directorio = new File(dir + "/out/production/IdeaProjects");
@@ -30,10 +40,26 @@ public class LanzadorProcesoPalindromo {
 
         try{
             InputStream is = proceso.getInputStream();
-            int c;
-            while ((c = is.read()) != -1)
-                System.out.print((char) c);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String linea;
+
+            while ((linea = br.readLine()) != null) {
+                if (linea.equals("La cadena pasada SI es palindromo")){
+                    File archivoPalindromo = new File("palindromo.txt");
+                    escrituraFicheros(archivoPalindromo, cadena);
+                }
+
+                if (linea.equals("La cadena pasada NO es palindromo")){
+                    File archivoNoPalindromo = new File("Nopalindromo.txt");
+                    escrituraFicheros(archivoNoPalindromo, cadena);
+                }
+                System.out.print(linea);
+
+                File archivoTodas = new File("todas.txt");
+                escrituraFicheros(archivoTodas, cadena);
+            }
             is.close();
+
         }catch(NullPointerException|IOException e) {
             e.getMessage();
         }
