@@ -15,4 +15,5 @@ public class EsPalindromo {
             System.out.println("La cadena pasada NO es palindromo");
         }
     }
+
 }
