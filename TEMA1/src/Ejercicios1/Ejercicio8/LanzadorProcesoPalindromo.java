@@ -47,13 +47,15 @@ public class LanzadorProcesoPalindromo {
                 if (linea.equals("La cadena pasada SI es palindromo")){
                     File archivoPalindromo = new File("palindromo.txt");
                     escrituraFicheros(archivoPalindromo, cadena);
+                    System.out.print(linea);
                 }
 
                 if (linea.equals("La cadena pasada NO es palindromo")){
                     File archivoNoPalindromo = new File("Nopalindromo.txt");
                     escrituraFicheros(archivoNoPalindromo, cadena);
+                    System.err.print(linea);
                 }
-                System.out.print(linea);
+
 
                 File archivoTodas = new File("todas.txt");
                 escrituraFicheros(archivoTodas, cadena);

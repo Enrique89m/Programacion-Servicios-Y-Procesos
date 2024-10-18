@@ -19,9 +19,9 @@ public class Main {
         }
         System.out.println("Que empiece la carrera!\n");
 
-        for (int i = 0; i < coches.size(); i++) {
-            coches.get(i).setName(coches.get(i).toString());
-            coches.get(i).start();
+        for (Coche coch : coches) {
+            coch.setName(coch.toString());
+            coch.start();
         }
     }
 }
