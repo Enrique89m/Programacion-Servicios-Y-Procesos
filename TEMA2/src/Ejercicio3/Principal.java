@@ -7,20 +7,19 @@ public class Principal{
 
         SacarDinero hilo1 = new SacarDinero(cuenta);
         hilo1.setName("Ana");
-        hilo1.start();
 
-        SacarDinero hilo2 = new SacarDinero(cuenta);
+        IngresarDinero hilo2 = new IngresarDinero(cuenta);
         hilo2.setName("Juan");
-        hilo2.start();
 
         SacarDinero hilo3 = new SacarDinero(cuenta);
         hilo3.setName("Pepe");
-        hilo3.start();
 
-        SacarDinero hilo4 = new SacarDinero(cuenta);
+        IngresarDinero hilo4 = new IngresarDinero(cuenta);
         hilo4.setName("Enrique");
+
+        hilo1.start();
+        hilo2.start();
+        hilo3.start();
         hilo4.start();
-
-
     }
 }

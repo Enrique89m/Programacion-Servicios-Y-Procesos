@@ -16,6 +16,10 @@ public class Cuenta {
         saldo -= cantidad;
     }
 
+    private void sumar(int cantidad){
+        saldo += cantidad;
+    }
+
     public synchronized void retirarDinero (int cantidad, String nombre){
         if (getSaldo() >= cantidad){
             System.out.println(nombre + ":" + " SE VA A RETIRAR SALDO (ACTUAL ES: " + getSaldo() + ")");
@@ -24,4 +28,10 @@ public class Cuenta {
             System.out.println("No se puede retirar dinero, NO HAY SALDO (ACTUAL ES: " + saldo);
         }
     }
+
+    public synchronized void ingresarDinero (int cantidad, String nombre){
+        System.out.println(nombre + ":" + " SE VA A INGRESAR SALDO (ACTUAL ES: " + getSaldo() + ")");
+        sumar(cantidad);
+    }
+
 }
