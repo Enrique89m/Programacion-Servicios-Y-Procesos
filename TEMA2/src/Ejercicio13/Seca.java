@@ -35,7 +35,5 @@ public class Seca extends Thread{
                 throw new RuntimeException(e);
             }
         }
-
     }
-
 }

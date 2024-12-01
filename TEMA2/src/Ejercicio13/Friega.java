@@ -36,8 +36,5 @@ public class Friega extends Thread{
                 throw new RuntimeException(e);
             }
         }
-
     }
-
-
 }

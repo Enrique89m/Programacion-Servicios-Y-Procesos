@@ -10,6 +10,5 @@ public class Principal {
 
         friega.start();
         seca.start();
-
     }
 }
