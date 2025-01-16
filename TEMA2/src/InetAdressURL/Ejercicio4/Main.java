@@ -1,4 +1,4 @@
-package Ejercicio4;
+package InetAdressURL.Ejercicio4;
 
 public class Main {
     public static void main(String[] args) {

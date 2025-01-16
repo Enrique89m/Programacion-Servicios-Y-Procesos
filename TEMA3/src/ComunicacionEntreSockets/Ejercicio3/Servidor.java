@@ -1,4 +1,4 @@
-package Ejercicio6;
+package ComunicacionEntreSockets.Ejercicio3;
 
 import java.io.BufferedWriter;
 import java.io.DataInputStream;
@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Servidor {
     static final int Puerto = 2000;
-    static private String producto;
     public static void main( String[] arg ) {
         try {
 // Inicio la escucha del servidor en un determinado puerto
@@ -24,25 +23,36 @@ public class Servidor {
 
             Socket sCliente1 = skServidor.accept();
 
-            //RECIBE EL PRODUCTO
-
-            InputStream entrada = null;
-            entrada = sCliente1.getInputStream();
-            DataInputStream recuperacionProducto = new DataInputStream(entrada);
-            producto = recuperacionProducto.readUTF();
-
-            System.out.println("Se ha recibido el producto " + producto);
-
             LocalDate fecha = LocalDate.now();
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             String fechaFormateada = fecha.format(formato);
-
             BufferedWriter bw = null;
             bw = new BufferedWriter(new FileWriter(fechaFormateada + ".txt", true));
-            bw.write(producto + "\n");
-            bw.close();
 
-            // Cierro el socket
+            while (true) {
+                //RECIBE EL PRODUCTO
+
+                InputStream entrada = sCliente1.getInputStream();
+                DataInputStream recuperacionProducto = new DataInputStream(entrada);
+
+                if (recuperacionProducto.available() > 0){
+                    String producto = recuperacionProducto.readUTF();
+
+                    if (!producto.equals("salir")) {
+                        System.out.println("Se ha recibido el producto " + producto);
+                        bw.write(producto + "\n");
+                        bw.flush();
+                    } else {
+                        break;
+                    }
+                }
+
+
+
+            }
+
+        // Cierro el socket
+            bw.close();
             skServidor.close();
         } catch( Exception e ) {
             System.out.println( e.getMessage() );

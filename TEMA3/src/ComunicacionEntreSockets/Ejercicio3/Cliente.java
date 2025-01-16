@@ -1,4 +1,4 @@
-package Ejercicio7;
+package ComunicacionEntreSockets.Ejercicio3;
 
 import java.io.DataOutputStream;
 import java.io.OutputStream;

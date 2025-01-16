@@ -1,4 +1,4 @@
-package Ejercicio4;
+package InetAdressURL.Ejercicio4;
 
 public class Corredor extends Thread{
     private static int pos = 0;

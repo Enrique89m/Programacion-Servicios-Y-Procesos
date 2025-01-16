@@ -1,4 +1,4 @@
-package Ejercicio4;
+package InetAdressURL.Ejercicio4;
 
 public class SuperHeroe {
 
