@@ -36,7 +36,7 @@ public class Profesional {
 
     public void setGenero(char genero) {
 
-        if (genero == 'M' || genero == 'F'){
+        if (genero == 'm' || genero == 'f'){
             this.genero = genero;
         }else{
             throw new IllegalArgumentException("El genero es incorrecto");
@@ -49,10 +49,33 @@ public class Profesional {
 
     public void setTipoProfesional(int tipoProfesional) {
 
-        if (tipoProfesional == 1){
-            this.tipoProfesional = Integer.parseInt("Jugador");
+        if (tipoProfesional >= 1 && tipoProfesional <= 3) {
+            this.tipoProfesional = tipoProfesional;
+        } else {
+            throw new IllegalArgumentException("Tipo de profesional inválido. Usa 1 (Jugador), 2 (Directivo) o 3 (Fisio).");
         }
+    }
 
+    public String getTipoProfesionalTexto() {
+        switch (tipoProfesional) {
+            case 1:
+                return "Jugador";
+            case 2:
+                return "Directivo";
+            case 3:
+                return "Fisio";
+            default:
+                return "Desconocido";
+        }
+    }
 
+    @Override
+    public String toString() {
+        return "Profesional{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                ", genero=" + (genero == 'm' ? "Masculino" : "Femenino") +
+                ", tipoProfesional=" + getTipoProfesionalTexto() +
+                '}';
     }
 }
