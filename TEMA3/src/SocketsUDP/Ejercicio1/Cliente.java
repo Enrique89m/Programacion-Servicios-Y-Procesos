@@ -13,37 +13,37 @@ public class Cliente {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-//puerto del servidor
+        //puerto del servidor
         final int puerto = 12345;
-//buffer donde se almacenara los mensajes
+        //buffer donde se almacenara los mensajes
         byte[] buffer = new byte[1024];
         InetAddress destino = getByName("localhost");
         //getByName(args[0]); //InetAddress.getLocalHost();
         System.out.println("Introduce mensaje: ");
         String mensaje = sc.nextLine();
-//Convierto el mensaje a bytes
+        //Convierto el mensaje a bytes
         buffer = mensaje.getBytes();
-//Creo un datagrama
+        //Creo un datagrama
         DatagramPacket envio = new DatagramPacket(buffer, buffer.length, destino, puerto);
-//Creo el socket de UDP
+        //Creo el socket de UDP
         DatagramSocket socketUDP = new DatagramSocket(34567);
-//Lo envio con send
+        //Lo envio con send
         socketUDP.send(envio);
 
         System.out.println("Esperando datagrama...");
-//construyo datagrama y buffer a recibir
+        //construyo datagrama y buffer a recibir
         byte[] bufferRecibir = new byte[1024];
 
         DatagramPacket recibo = new DatagramPacket(bufferRecibir, bufferRecibir.length);
 
-//Recibo el datagrama
+        //Recibo el datagrama
         socketUDP.receive(recibo);
-//Convierto lo recibido y mostrar el mensaje
+        //Convierto lo recibido y mostrar el mensaje
         String mensajeRecibido = new String(recibo.getData()).trim();
         System.out.println("Recibo número de caracteres 'a' que son: " + mensajeRecibido);
 
 
-//cierro el socket
+        //cierro el socket
         socketUDP.close();
     }
 }

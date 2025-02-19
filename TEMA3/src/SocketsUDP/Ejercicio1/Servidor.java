@@ -10,13 +10,13 @@ public class Servidor {
     public static void main(String[] args) throws IOException {
         byte[] buffer = new byte[1024];
         System.out.println("Servidor esperando datagrama...");
-//construyo datagrama a recibir
+        //construyo datagrama a recibir
         DatagramPacket recibo = new DatagramPacket(buffer, buffer.length);
-//Creacion del socket
+        //Creacion del socket
         DatagramSocket socketUDP = new DatagramSocket(12345);
-//Recibo el datagrama
+        //Recibo el datagrama
         socketUDP.receive(recibo);
-//Convierto lo recibido y mostrar el mensaje
+        //Convierto lo recibido y mostrar el mensaje
         String mensaje = new String(recibo.getData()).trim();
         System.out.println("Servidor recibe: " + mensaje);
 
@@ -28,8 +28,8 @@ public class Servidor {
             }
         }
 
-//Obtengo el puerto y la direccion de origen
-//Sino se quiere responder, no es necesario
+        //Obtengo el puerto y la direccion de origen
+        //Sino se quiere responder, no es necesario
         int puertoCliente = recibo.getPort();
         InetAddress direccion = recibo.getAddress();
 
